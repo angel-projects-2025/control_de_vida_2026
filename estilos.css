@@ -609,3 +609,56 @@ body {
         margin-left: 10px;
     }
 }
+
+/* Contenedor tabla PC */
+.control-diario {
+    width: auto;           
+    margin: 30px 30px 30px 300px; /* margen grande en PC */
+    overflow-x: auto;
+}
+
+/* Ajuste responsive MÓVIL */
+@media (max-width: 768px) {
+    .control-diario {
+        margin: 20px 10px; /* margen superior/inferior 20px, izquierda/derecha 10px */
+        width: auto;       /* que se ajuste al contenido */
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .meta {
+        font-size: 1rem;           /* texto más pequeño */
+        padding: 6px 12px;         /* padding proporcional */
+        margin-left: 0;            /* quitar margen izquierdo grande */
+        margin-top: 10px;          /* espacio superior */
+        display: block;            /* ocupa toda la línea y se ve seguro */
+        text-align: center;        /* centrado horizontal */
+    }
+}
+
+/* CUADRO META */
+.meta {
+    display: inline-block;              /* al lado de la edad */
+    padding: 10px 20px;                /* tamaño del cuadro */
+    background-color: #fff3e0;         /* fondo naranja suave */
+    border: 2px solid #FFA500;        /* borde naranja */
+    border-radius: 6px;                /* esquinas redondeadas */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-left: 595px;                 /* separación desde la edad en PC */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* AJUSTE RESPONSIVE PARA MÓVIL */
+@media (max-width: 768px) {
+    .meta {
+        display: inline-block;          /* sigue al lado de la edad si hay espacio */
+        font-size: 1rem;                /* más pequeño en móvil */
+        padding: 6px 12px;              /* padding más pequeño */
+        margin-left: 15px;              /* menos separación desde la edad */
+        margin-top: 10px;               /* espacio superior para que no choque */
+    }
+}
