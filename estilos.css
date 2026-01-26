@@ -255,7 +255,7 @@ body {
 
 @media (max-width: 768px) {
     .meses {
-        right: -70px; /* lo acercamos más a la derecha */
+        right: -10px; /* lo acercamos más a la derecha */
     }
 }
 
@@ -304,7 +304,7 @@ body {
         font-size: 1.6rem;       /* más grande en móvil pero proporcional */
         padding: 12px 20px;       
         margin-top: 20px;        /* más abajo de la edad en móvil */
-        margin-left: 20px;       
+        margin-left: 40px;       
     }
 }
 
@@ -344,4 +344,60 @@ body {
 .meses button:active {
     background-color: #fff !important;
     color: #000 !important;
+}
+
+/* Estilos generales de la tabla */
+.control-diario {
+    width: 95%;
+    margin: 20px auto;
+    overflow-x: auto; /* para móvil si no cabe */
+}
+
+.control-diario table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.control-diario th,
+.control-diario td {
+    border: 1px solid #555;
+    padding: 10px;
+    font-size: 1rem;
+    min-width: 60px;
+}
+
+/* Diferenciar encabezado */
+.control-diario th {
+    background-color: #2a5dab; /* azul cabecera */
+    color: white;
+}
+
+/* Fila editable */
+.control-diario td {
+    background-color: #f0f0f0;
+}
+
+/* Responsive: mostrar nombres abreviados en móvil */
+.pc {
+    display: table-row;
+}
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .pc {
+        display: none;
+    }
+    .mobile {
+        display: table-row;
+        background-color: #2a5dab;
+        color: white;
+    }
+    .control-diario td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
 }
