@@ -205,7 +205,7 @@
 }
 
 .edad {
-    margin-left: 90px;  /* un poco a la derecha en PC */
+    margin-left: 280px;  /* un poco a la derecha en PC */
 }
 
 @media (max-width: 768px) {
@@ -255,27 +255,56 @@ body {
 
 @media (max-width: 768px) {
     .meses {
-        right: 20px; /* lo acercamos más a la derecha */
+        right: 100px; /* lo acercamos más a la derecha */
     }
 }
 
 .mes-resaltada {
     display: inline-block;
-    padding: 8px 15px;           /* espacio dentro del marco */
-    border: 2px solid #FFD700;   /* borde tipo resaltador dorado */
-    background-color: #fff8c4;   /* fondo tipo resaltador */
+    width: auto;                 /* que se ajuste al contenido */
+    padding: 8px 15px;           
+    border: 2px solid #FFD700;   
+    background-color: #fff8c4;   
     font-weight: bold;
-    border-radius: 5px;          /* esquinas redondeadas */
-    margin-top: 10px;            /* espacio arriba */
+    border-radius: 5px;          
+    margin-top: 10px;            
     text-align: center;
-    color: #333;                 /* texto oscuro para resaltar */
+    color: #333;                 
     font-size: 1rem;
+    box-sizing: border-box;      /* asegura que padding + border se vean bien */
 }
 
 /* Ajuste para móvil */
 @media (max-width: 768px) {
     .mes-resaltada {
         font-size: 0.9rem;
-        padding: 6px 10px;
+        padding: 6px 12px;        /* ajustamos padding para que se vea igual que en PC */
+        margin-top: 8px;
     }
 }
+
+.mes-resaltada {
+    display: inline-block;
+    padding: 15px 25px;          /* marco más grande */
+    border: 2px solid #FFD700;   
+    background-color: #fff8c4;   
+    font-weight: bold;
+    border-radius: 8px;          
+    margin-top: 30px;            /* más abajo de la edad */
+    text-align: center;
+    color: #333;                 
+    font-size: 2rem;             /* mucho más grande */
+    box-sizing: border-box;
+    margin-left: 300px;           /* posición a la derecha */
+}
+
+/* Ajuste para móvil */
+@media (max-width: 768px) {
+    .mes-resaltada {
+        font-size: 1.6rem;       /* más grande en móvil pero proporcional */
+        padding: 12px 20px;       
+        margin-top: 20px;        /* más abajo de la edad en móvil */
+        margin-left: 15px;       
+    }
+}
+
