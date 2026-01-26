@@ -125,3 +125,19 @@ body {
         padding-top: 15px;
     }
 }
+
+@media (max-width: 480px) {
+    .cabezal {
+        height: 110px;   /* 👈 MUCHO más corto */
+        padding-top: 10px;
+    }
+
+    .cabezal h1 {
+        font-size: 1.6rem;
+    }
+
+    .cabezal h2 {
+        font-size: 2.7rem;
+        margin-top: 4px;
+    }
+}
