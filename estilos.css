@@ -658,7 +658,7 @@ body {
         display: inline-block;          /* sigue al lado de la edad si hay espacio */
         font-size: 1rem;                /* más pequeño en móvil */
         padding: 6px 12px;              /* padding más pequeño */
-        margin-left: 100px;              /* menos separación desde la edad */
+        margin-left: 200px;              /* menos separación desde la edad */
         margin-top: 10px;               /* espacio superior para que no choque */
     }
 }
@@ -701,5 +701,23 @@ body {
     .peso .resaltado {
         font-size: 1.2rem;
         text-shadow: 0 0 2px #FFA500;
+    }
+}
+ 
+/* Franja debajo de la tabla, fuera de la sección */
+.franja {
+    width: 95%;                /* casi todo el ancho de la tabla */
+    max-width: 1200px;         /* opcional: no muy ancho en PC grande */
+    height: 8px;               /* grosor de la franja */
+    background-color: #0e0d0b; /* color naranja */
+    margin: 20px auto;         /* separación y centrado */
+    border-radius: 4px;        /* bordes redondeados */
+}
+
+/* Ajuste para móvil */
+@media (max-width: 768px) {
+    .franja {
+        width: 90%;            /* un poco más estrecha en móvil */
+        height: 6px;           /* menos grosor */
     }
 }
