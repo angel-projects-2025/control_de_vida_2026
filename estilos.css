@@ -252,3 +252,30 @@ body {
     padding: 40px 20px;
     position: relative;
 }
+
+@media (max-width: 768px) {
+    .meses {
+        right: 20px; /* lo acercamos más a la derecha */
+    }
+}
+
+.mes-resaltada {
+    display: inline-block;
+    padding: 8px 15px;           /* espacio dentro del marco */
+    border: 2px solid #FFD700;   /* borde tipo resaltador dorado */
+    background-color: #fff8c4;   /* fondo tipo resaltador */
+    font-weight: bold;
+    border-radius: 5px;          /* esquinas redondeadas */
+    margin-top: 10px;            /* espacio arriba */
+    text-align: center;
+    color: #333;                 /* texto oscuro para resaltar */
+    font-size: 1rem;
+}
+
+/* Ajuste para móvil */
+@media (max-width: 768px) {
+    .mes-resaltada {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+}
