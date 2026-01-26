@@ -346,86 +346,40 @@ body {
     color: #000 !important;
 }
 
-/* Estilos generales de la tabla */
 .control-diario {
     width: 95%;
     margin: 20px auto;
-    overflow-x: auto; /* para móvil si no cabe */
+    overflow-x: auto;
 }
 
+/* Tabla */
 .control-diario table {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    table-layout: fixed; /* columnas de ancho uniforme */
+    table-layout: auto; /* permite que se ajuste según contenido */
 }
 
+/* Columnas */
 .control-diario th,
 .control-diario td {
     border: 1px solid #555;
-    padding: 10px;
+    padding: 8px;
     font-size: 1rem;
-    width: 60px;  /* ancho más pequeño de las columnas */
-    min-width: auto; /* eliminamos el min-width anterior */
+    width: px;       /* ancho horizontal de cada columna en PC */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Diferenciar encabezado */
-.control-diario th {
-    background-color: #2a5dab; /* azul cabecera */
-    color: white;
-}
-
-/* Fila editable */
-.control-diario td {
-    background-color: #f0f0f0;
-}
-
-/* Responsive: mostrar nombres abreviados en móvil */
+/* Encabezado PC */
 .pc {
     display: table-row;
 }
 
+/* Encabezado Móvil */
 .mobile {
     display: none;
-}
-
-@media (max-width: 768px) {
-    .pc {
-        display: none;
-    }
-    .mobile {
-        display: table-row;
-        background-color: #2a5dab;
-        color: white;
-    }
-    .control-diario td {
-        font-size: 0.8rem;
-        padding: 6px;
-        width: 40px; /* columnas más estrechas en móvil */
-    }
-}
-
-.control-diario table {
-    width: auto;          /* ancho total según contenido */
-    border-collapse: collapse;
-    text-align: center;
-    table-layout: auto;   /* importante para que el ancho se ajuste horizontalmente */
-}
-
-/* Columnas con ancho máximo horizontal */
-.control-diario th,
-.control-diario td {
-    border: 1px solid #555;
-    padding: 8px;          /* solo para altura, no afecta ancho */
-    font-size: 1rem;
-    max-width: 200px;       /* límite de ancho horizontal de los cuadros */
-    overflow: hidden;      /* evita que el contenido se salga del cuadro */
-    text-overflow: ellipsis; /* corta texto si es muy largo */
-    white-space: nowrap;   /* evita que el texto haga salto de línea */
-}
-
-/* Encabezado */
-.control-diario th {
     background-color: #2a5dab;
     color: white;
 }
@@ -435,12 +389,114 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Responsive móvil */
+/* Mes resaltado debajo de la edad */
+.mes-resaltado {
+    margin-top: 10px;
+    margin-left: 20px; /* separación de la izquierda */
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: yellow;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
+    .pc {
+        display: none;
+    }
+    .mobile {
+        display: table-row;
+    }
+
     .control-diario th,
     .control-diario td {
-        max-width: 30px;   /* ancho más pequeño en móvil */
+        width: 50px;   /* ancho columnas más pequeño en móvil */
         font-size: 0.8rem;
         padding: 4px;
+    }
+
+    .mes-resaltado {
+        margin-left: 10px; /* ajusta separación en móvil */
+        font-size: 1rem;
+        padding: 4px 10px;
+    }
+}
+
+.control-diario {
+    width: auto;            /* ancho de la tabla según tus cuadros */
+    margin: 20px auto;
+    overflow-x: auto;       /* permite scroll si la tabla es más ancha que la pantalla */
+}
+
+.control-diario table {
+    width: auto;            /* ancho según el contenido */
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;    /* clave: hace que el width de las columnas se respete */
+}
+
+/* Columnas con ancho editable */
+.control-diario th,
+.control-diario td {
+    border: 1px solid #555;
+    padding: 6px;            /* solo afecta altura */
+    font-size: 0.9rem;
+    width: 120px;             /* <-- CAMBIA ESTE VALOR para ajustar ancho horizontal */
+    overflow: hidden;        /* evita que el contenido sobresalga */
+    text-overflow: ellipsis; /* corta texto si es demasiado largo */
+    white-space: nowrap;     /* evita salto de línea */
+}
+
+/* Encabezado PC */
+.pc {
+    display: table-row;
+}
+
+/* Encabezado Móvil */
+.mobile {
+    display: none;
+    background-color: #2a5dab;
+    color: white;
+}
+
+/* Fila editable */
+.control-diario td {
+    background-color: #f0f0f0;
+}
+
+/* Mes resaltado */
+.mes-resaltado {
+    margin-top: 10px;
+    margin-left: 20px;
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: yellow;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* Responsive Móvil */
+@media (max-width: 768px) {
+    .pc {
+        display: none;
+    }
+    .mobile {
+        display: table-row;
+    }
+
+    .control-diario th,
+    .control-diario td {
+        width: 35px;           /* <-- CAMBIA ESTE VALOR para ancho en móvil */
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+
+    .mes-resaltado {
+        margin-left: 10px;
+        font-size: 1rem;
+        padding: 4px 10px;
     }
 }
