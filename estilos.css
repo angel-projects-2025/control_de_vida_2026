@@ -574,7 +574,7 @@ body {
 
     /* Mover tabla un poco a la derecha en móvil */
     .control-diario {
-        margin-left: 50px;    /* ajusta este valor según gusto */
+        margin-left: 10px;    /* ajusta este valor según gusto */
         margin-right: 15px;
     }
 
@@ -585,3 +585,27 @@ body {
     }
 }
 
+/* Texto META al lado de la edad */
+.meta {
+    display: inline-block;
+    padding: 10px 20px;          /* marco alrededor del texto */
+    background-color: #fff3e0;   /* fondo suave */
+    border: 2px solid #FFA500;   /* borde naranja */
+    border-radius: 6px;          /* esquinas redondeadas */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-left: 20px;           /* separación de la edad */
+    text-align: center;
+    box-sizing: border-box;
+    /* subrayado eliminado */
+}
+
+/* Ajuste responsive para móvil */
+@media (max-width: 768px) {
+    .meta {
+        font-size: 1rem;
+        padding: 6px 12px;
+        margin-left: 10px;
+    }
+}
