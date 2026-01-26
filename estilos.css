@@ -489,9 +489,93 @@ body {
 
     .control-diario th,
     .control-diario td {
-        width: 35px;           /* <-- CAMBIA ESTE VALOR para ancho en móvil */
+        width: 40px;           /* <-- CAMBIA ESTE VALOR para ancho en móvil */
         font-size: 0.8rem;
         padding: 4px;
+    }
+
+    .mes-resaltado {
+        margin-left: 10px;
+        font-size: 1rem;
+        padding: 4px 10px;
+    }
+}
+
+/* Contenedor de la tabla */
+.control-diario {
+    width: auto;           /* ancho según el contenido */
+    margin: 30px 30px 30px 300px; /* margen superior, derecho, inferior, izquierdo */
+    overflow-x: auto;      /* scroll si no cabe */
+}
+
+/* Tabla */
+.control-diario table {
+    width: auto;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;   /* respeta el ancho definido de columnas */
+}
+
+/* Columnas con ancho editable */
+.control-diario th,
+.control-diario td {
+    border: 1px solid #555;
+    padding: 6px;           /* altura de las celdas */
+    font-size: 0.9rem;
+    width: 120px;            /* CAMBIA este valor para ajustar ancho horizontal */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Encabezados PC y Móvil */
+.pc {
+    display: table-row;    /* se ve en PC */
+}
+
+.mobile {
+    display: none;         /* se oculta en PC */
+    background-color: #2a5dab;
+    color: white;
+}
+
+/* Fila editable */
+.control-diario td {
+    background-color: #f0f0f0;
+}
+
+/* Mes resaltado debajo de la edad */
+.mes-resaltado {
+    margin-top: 10px;
+    margin-left: 20px; 
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: yellow;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* Responsive Móvil */
+@media (max-width: 768px) {
+    .pc {
+        display: none;
+    }
+    .mobile {
+        display: table-row;
+    }
+
+    .control-diario th,
+    .control-diario td {
+        width: 40px;           /* ancho cuadros en móvil */
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+
+    /* Mover tabla un poco a la derecha en móvil */
+    .control-diario {
+        margin-left: 15px;    /* ajusta este valor según gusto */
+        margin-right: 15px;
     }
 
     .mes-resaltado {
