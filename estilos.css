@@ -574,7 +574,7 @@ body {
 
     /* Mover tabla un poco a la derecha en móvil */
     .control-diario {
-        margin-left: 15px;    /* ajusta este valor según gusto */
+        margin-left: 50px;    /* ajusta este valor según gusto */
         margin-right: 15px;
     }
 
@@ -582,5 +582,24 @@ body {
         margin-left: 10px;
         font-size: 1rem;
         padding: 4px 10px;
+    }
+}
+
+/* Separación entre fila de categorías y cuadros vacíos */
+.control-diario table {
+    border-collapse: separate;   /* importante para que funcione border-spacing */
+    border-spacing: 0 12px;      /* 12px de espacio vertical entre filas */
+}
+
+/* Bordes de todas las celdas completos */
+.control-diario th,
+.control-diario td {
+    border: 2px solid #000;
+}
+
+/* Ajuste responsive para móvil */
+@media (max-width: 768px) {
+    .control-diario table {
+        border-spacing: 0 8px;   /* menos espacio en móvil */
     }
 }
