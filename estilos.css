@@ -620,7 +620,7 @@ body {
 /* Ajuste responsive MÓVIL */
 @media (max-width: 768px) {
     .control-diario {
-        margin: 20px 10px; /* margen superior/inferior 20px, izquierda/derecha 10px */
+        margin: 20px 15px; /* margen superior/inferior 20px, izquierda/derecha 10px */
         width: auto;       /* que se ajuste al contenido */
         overflow-x: auto;
     }
@@ -658,7 +658,26 @@ body {
         display: inline-block;          /* sigue al lado de la edad si hay espacio */
         font-size: 1rem;                /* más pequeño en móvil */
         padding: 6px 12px;              /* padding más pequeño */
-        margin-left: 15px;              /* menos separación desde la edad */
+        margin-left: 40px;              /* menos separación desde la edad */
         margin-top: 10px;               /* espacio superior para que no choque */
+    }
+}
+
+/* Separación entre fila de categorías y cuadros vacíos */
+.control-diario table {
+    border-collapse: separate;   /* importante para que funcione border-spacing */
+    border-spacing: 0 12px;      /* 12px de espacio vertical entre filas */
+}
+
+/* Bordes de todas las celdas completos */
+.control-diario th,
+.control-diario td {
+    border: 2px solid #000;
+}
+
+/* Ajuste responsive para móvil */
+@media (max-width: 768px) {
+    .control-diario table {
+        border-spacing: 0 8px;   /* menos espacio en móvil */
     }
 }
