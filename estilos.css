@@ -658,7 +658,7 @@ body {
         display: inline-block;          /* sigue al lado de la edad si hay espacio */
         font-size: 1rem;                /* más pequeño en móvil */
         padding: 6px 12px;              /* padding más pequeño */
-        margin-left: 40px;              /* menos separación desde la edad */
+        margin-left: 100px;              /* menos separación desde la edad */
         margin-top: 10px;               /* espacio superior para que no choque */
     }
 }
@@ -679,5 +679,27 @@ body {
 @media (max-width: 768px) {
     .control-diario table {
         border-spacing: 0 8px;   /* menos espacio en móvil */
+    }
+}
+
+/* Contenedor de peso debajo de la edad */
+.peso {
+    margin-top: 10px;        /* separa un poco de la edad/meta */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;             /* color normal de "PESO :" */
+}
+
+/* Resaltar solo el número con amarillo fuerte y sutil brillo */
+.peso .resaltado {
+    color: #FFD700;        /* amarillo intenso */
+    font-weight: 900;
+    font-size: 1.4rem;     /* tamaño visible */
+    text-shadow: 0 0 3px #FFA500; /* sombra naranja muy sutil */
+}
+@media (max-width: 768px) {
+    .peso .resaltado {
+        font-size: 1.2rem;
+        text-shadow: 0 0 2px #FFA500;
     }
 }
