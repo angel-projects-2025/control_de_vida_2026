@@ -255,7 +255,7 @@ body {
 
 @media (max-width: 768px) {
     .meses {
-        right: -100px; /* lo acercamos más a la derecha */
+        right: -70px; /* lo acercamos más a la derecha */
     }
 }
 
@@ -304,7 +304,7 @@ body {
         font-size: 1.6rem;       /* más grande en móvil pero proporcional */
         padding: 12px 20px;       
         margin-top: 20px;        /* más abajo de la edad en móvil */
-        margin-left: 15px;       
+        margin-left: 20px;       
     }
 }
 
@@ -318,6 +318,30 @@ body {
 /* Ajuste para móvil */
 @media (max-width: 768px) {
     .cabezal {
-        padding: 15px 10px; /* más compacto en móvil */
+        padding: 20px 15px; /* más compacto en móvil */
     }
+}
+
+.meses button {
+    background-color: #FFD700; /* dorado */
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+}
+
+/* Hover en PC */
+.meses button:hover {
+    background-color: #fff !important; /* blanco */
+    color: #000 !important;            /* letras negras */
+}
+
+/* Efecto táctil en móvil */
+.meses button:active {
+    background-color: #fff !important;
+    color: #000 !important;
 }
