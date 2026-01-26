@@ -124,3 +124,82 @@
     }
 }
 
+#listaMeses {
+    list-style: none;   /* 👈 QUITA LOS PUNTITOS */
+    margin: 0;
+    padding: 0;
+}
+.control-vida {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-left: 20px;   /* empuja un poco a la derecha */
+}
+
+#btnMeses {
+    background: linear-gradient(135deg, #d4af37, #ffd700);
+    color: #333;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 8px 16px;
+    border: 2px solid #d4af37;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* PC: hover */
+#btnMeses:hover {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+/* MÓVIL: al tocar */
+#btnMeses:active {
+    background: transparent;
+    color: #ffffff;
+    opacity: 0.85;
+    transform: scale(0.96);
+}
+
+@media (max-width: 768px) {
+
+    .control-vida {
+        gap: 10px;
+        padding-left: 10px;
+    }
+
+    #btnMeses {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        border-radius: 18px;
+    }
+}
+
+.control-vida {
+    position: relative;
+    text-align: center;
+    left: -16px; /* mantiene un poco a la izquierda */
+}
+
+/* BOTÓN DE MESES */
+.meses {
+    position: absolute;
+    right: 630px;   /* más cerca del texto en PC */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* AJUSTE PARA MÓVIL */
+@media (max-width: 768px) {
+    .control-vida {
+        left: -8px;  /* menos desplazamiento en móvil */
+    }
+
+    .meses {
+        right: 30px;   /* se acerca al texto y no se va de la pantalla */
+        transform: translateY(-50%) scale(0.9); /* más pequeño para móvil */
+    }
+}
