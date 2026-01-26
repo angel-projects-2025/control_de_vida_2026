@@ -255,7 +255,7 @@ body {
 
 @media (max-width: 768px) {
     .meses {
-        right: -10px; /* lo acercamos más a la derecha */
+        right: -7px; /* lo acercamos más a la derecha */
     }
 }
 
@@ -304,7 +304,7 @@ body {
         font-size: 1.6rem;       /* más grande en móvil pero proporcional */
         padding: 12px 20px;       
         margin-top: 20px;        /* más abajo de la edad en móvil */
-        margin-left: 40px;       
+        margin-left: 10px;       
     }
 }
 
@@ -357,6 +357,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
+    table-layout: fixed; /* columnas de ancho uniforme */
 }
 
 .control-diario th,
@@ -364,7 +365,8 @@ body {
     border: 1px solid #555;
     padding: 10px;
     font-size: 1rem;
-    min-width: 60px;
+    width: 60px;  /* ancho más pequeño de las columnas */
+    min-width: auto; /* eliminamos el min-width anterior */
 }
 
 /* Diferenciar encabezado */
@@ -397,7 +399,48 @@ body {
         color: white;
     }
     .control-diario td {
-        font-size: 0.9rem;
-        padding: 8px;
+        font-size: 0.8rem;
+        padding: 6px;
+        width: 40px; /* columnas más estrechas en móvil */
+    }
+}
+
+.control-diario table {
+    width: auto;          /* ancho total según contenido */
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: auto;   /* importante para que el ancho se ajuste horizontalmente */
+}
+
+/* Columnas con ancho máximo horizontal */
+.control-diario th,
+.control-diario td {
+    border: 1px solid #555;
+    padding: 8px;          /* solo para altura, no afecta ancho */
+    font-size: 1rem;
+    max-width: 200px;       /* límite de ancho horizontal de los cuadros */
+    overflow: hidden;      /* evita que el contenido se salga del cuadro */
+    text-overflow: ellipsis; /* corta texto si es muy largo */
+    white-space: nowrap;   /* evita que el texto haga salto de línea */
+}
+
+/* Encabezado */
+.control-diario th {
+    background-color: #2a5dab;
+    color: white;
+}
+
+/* Fila editable */
+.control-diario td {
+    background-color: #f0f0f0;
+}
+
+/* Responsive móvil */
+@media (max-width: 768px) {
+    .control-diario th,
+    .control-diario td {
+        max-width: 30px;   /* ancho más pequeño en móvil */
+        font-size: 0.8rem;
+        padding: 4px;
     }
 }
