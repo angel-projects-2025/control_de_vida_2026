@@ -199,7 +199,56 @@
     }
 
     .meses {
-        right: 30px;   /* se acerca al texto y no se va de la pantalla */
+        right: 60px;   /* se acerca al texto y no se va de la pantalla */
         transform: translateY(-50%) scale(0.9); /* más pequeño para móvil */
     }
+}
+
+.edad {
+    margin-left: 90px;  /* un poco a la derecha en PC */
+}
+
+@media (max-width: 768px) {
+    .edad {
+        margin-left: 10px;  /* un poco a la derecha en móvil */
+    }
+}
+/* Fuente normal para toda la página */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+.anio {
+    color: #2a5dab; /* azul sólido del número */
+    font-weight: bold;
+    /* contorno ultra intenso */
+    text-shadow:
+        0 0 5px #66a3ff,
+        0 0 10px #66a3ff,
+        0 0 15px #66a3ff,
+        0 0 20px #66a3ff,
+        0 0 25px #66a3ff,
+        0 0 30px #66a3ff,
+        0 0 35px #66a3ff;
+}
+
+@media (max-width: 768px) {
+    .anio {
+        text-shadow:
+            0 0 3px #66a3ff,
+            0 0 6px #66a3ff,
+            0 0 9px #66a3ff,
+            0 0 12px #66a3ff,
+            0 0 15px #66a3ff,
+            0 0 18px #66a3ff,
+            0 0 21px #66a3ff;
+    }
+}
+
+.cabezal {
+    background-color: #555; /* gris oscuro */
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
 }
