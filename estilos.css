@@ -81,3 +81,47 @@ body {
         padding-top: 35px;
     }
 }
+
+.cabezal {
+    background-color: #5f6a6a; /* plomo acero */
+    height: 200px; /* PC */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 25px;
+}
+
+@media (max-width: 480px) {
+    .cabezal {
+        height: 140px; /* MÁS CHICO EN MÓVIL */
+        padding-top: 15px;
+    }
+
+    .cabezal h1 {
+        font-size: 1.7rem;
+    }
+
+    .cabezal h2 {
+        font-size: 3rem;
+    }
+}
+
+.cabezal {
+    background-color: #5f6a6a; /* plomo acero */
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* mantiene centrado */
+    align-items: center;
+    text-align: center;
+    padding-top: 70px; /* 👈 ESTO baja todo un poco */
+}
+
+@media (max-width: 480px) {
+    .cabezal {
+        height: 140px;
+        padding-top: 15px;
+    }
+}
