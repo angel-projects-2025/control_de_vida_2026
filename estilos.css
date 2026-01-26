@@ -168,3 +168,20 @@ body {
         font-size: 2.1rem;
     }
 }
+
+@media (max-width: 480px) {
+    .cabezal {
+        height: 90px;        /* 🔥 MUY corto */
+        padding-top: 5px;   /* casi nada de espacio */
+    }
+
+    .cabezal h1 {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .cabezal h2 {
+        font-size: 2.2rem;
+        margin-top: 2px;
+    }
+}
