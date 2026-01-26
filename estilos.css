@@ -255,7 +255,7 @@ body {
 
 @media (max-width: 768px) {
     .meses {
-        right: 100px; /* lo acercamos más a la derecha */
+        right: -100px; /* lo acercamos más a la derecha */
     }
 }
 
@@ -308,3 +308,16 @@ body {
     }
 }
 
+.cabezal {
+    background-color: #555; 
+    text-align: center;
+    padding: 25px 20px; /* más compacto en PC */
+    position: relative;
+}
+
+/* Ajuste para móvil */
+@media (max-width: 768px) {
+    .cabezal {
+        padding: 15px 10px; /* más compacto en móvil */
+    }
+}
