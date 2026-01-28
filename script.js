@@ -10,42 +10,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// ====== CONFIGURACIÓN DE FIREBASE ======
-// Reemplaza los valores con los de tu proyecto de Firebase
+// 1️⃣ Configuración de Firebase
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    databaseURL: "TU_DATABASE_URL",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+  apiKey: "AIzaSyAd3UszZPrcm5UPQs0uKLlOKIUfw6iZ0Jw",
+  authDomain: "control2026.firebaseapp.com",
+  databaseURL: "https://control2026-default-rtdb.firebaseio.com",
+  projectId: "control2026",
+  storageBucket: "control2026.appspot.com",
+  messagingSenderId: "236169340239",
+  appId: "1:236169340239:web:cfaaa09292965b872fd13a",
+  measurementId: "G-TREFLRKN62"
 };
 
-// Inicializar Firebase
+// Inicializa Firebase
 firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+const db = firebase.database();
 
-// ====== FUNCIONES PRINCIPALES ======
-const tablas = document.querySelectorAll('.control-diario table');
+// 2️⃣ Selecciona todos los td editables
+const celdas = document.querySelectorAll('td[contenteditable="true"]');
 
-// Recorremos cada tabla
-tablas.forEach((tabla, tablaIndex) => {
-    const celdas = tabla.querySelectorAll('td');
+// 3️⃣ Genera una clave única para cada celda según su posición
+celdas.forEach((td, index) => {
+    td.dataset.id = index;
 
-    celdas.forEach((celda, celdaIndex) => {
-        const ruta = `tabla${tablaIndex}/celda${celdaIndex}`;
+    // 3a️⃣ Cargar datos existentes de Firebase al iniciar
+    db.ref('datos/' + index).once('value').then(snapshot => {
+        if(snapshot.exists()){
+            td.textContent = snapshot.val();
+        }
+    });
 
-        // 1️⃣ Escuchar cambios en Firebase y actualizar la celda
-        database.ref(ruta).on('value', snapshot => {
-            if(snapshot.exists()){
-                celda.textContent = snapshot.val();
-            }
-        });
+    // 3b️⃣ Guardar datos en Firebase cada vez que se edite
+    td.addEventListener('input', () => {
+        db.ref('datos/' + td.dataset.id).set(td.textContent);
+    });
+});
 
-        // 2️⃣ Escuchar cambios locales y guardar en Firebase
-        celda.addEventListener('input', () => {
-            database.ref(ruta).set(celda.textContent);
-        });
+// 4️⃣ Escuchar cambios en Firebase para actualizar todas las celdas en tiempo real
+db.ref('datos').on('value', snapshot => {
+    snapshot.forEach(child => {
+        const id = child.key;
+        const valor = child.val();
+        const td = document.querySelector(`td[data-id='${id}']`);
+        if(td && td.textContent !== valor){
+            td.textContent = valor;
+        }
     });
 });
