@@ -906,3 +906,9 @@ body {
         margin-left: 90px; /* ajusta a tu gusto */
     }
 }
+
+@media (max-width: 768px) {
+    .meta {
+        transform: translateX(70px);
+    }
+}
