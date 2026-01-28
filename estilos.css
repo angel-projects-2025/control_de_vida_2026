@@ -909,6 +909,6 @@ body {
 
 @media (max-width: 768px) {
     .meta {
-        transform: translateX(70px);
+        transform: translateX(100px);
     }
 }
