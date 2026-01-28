@@ -897,7 +897,7 @@ body {
 
 @media (max-width: 768px) {
     .meta {
-        margin-left: -10px;   /* 👈 mueve META a la izquierda en MÓVIL */
+        margin-left: 10px;   /* 👈 mueve META a la izquierda en MÓVIL */
     }
 }
 
