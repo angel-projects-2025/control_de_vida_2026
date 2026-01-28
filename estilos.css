@@ -724,14 +724,14 @@ body {
 
 @media (max-width: 768px) {
     .edad {
-        font-size: 1.1rem;     /* 👈 tamaño general más grande */
+        font-size: 1rem;     /* 👈 tamaño general más grande */
         margin-top: 14px;
         padding-left: 12px;
         font-weight: 800;
     }
 
     .edad span {
-        font-size: 1.3rem;     /* 👈 el 19/20 bien notorio */
+        font-size: 1.1rem;     /* 👈 el 19/20 bien notorio */
         font-weight: 900;
     }
 }
@@ -792,4 +792,34 @@ body {
         font-size: 0.8rem;
         padding: 6px;
     }
+}
+
+@media (max-width: 768px) {
+
+    /* EDAD más compacta */
+    .edad {
+        margin-bottom: 6px;
+    }
+
+    /* ENERO más arriba */
+    .mes-resaltada {
+        margin-top: 4px !important;
+    }
+
+    /* PESO más arriba */
+    .peso {
+        margin-top: 4px !important;
+    }
+
+    /* TABLA más arriba */
+    .control-diario {
+        margin-top: 6px !important;
+    }
+}
+
+.franja {
+    height: 6px;              /* grosor de la franja */
+    background-color: #000;   /* color */
+    width: 55%;               /* 👈 AQUÍ achicas el ancho en PC */
+    margin: 10px auto;        /* centrada */
 }
