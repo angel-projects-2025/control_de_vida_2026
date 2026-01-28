@@ -29,12 +29,17 @@ const db = firebase.database();
 // 2️⃣ Selecciona todos los td editables
 const celdas = document.querySelectorAll('td[contenteditable="true"]');
 
+// Detecta el mes según lo que dice tu HTML
+const mesActual = document.querySelector('.mes-resaltada').textContent.trim();
+console.log("Mes actual:", mesActual); // Solo para probar
+
+
 // 3️⃣ Genera una clave única para cada celda según su posición
 celdas.forEach((td, index) => {
     td.dataset.id = index;
 
     // 3a️⃣ Cargar datos existentes de Firebase al iniciar
-    db.ref('datos/' + index).once('value').then(snapshot => {
+    db.ref(mesActual + '/datos/' + index).once('value').then(snapshot => {
         if(snapshot.exists()){
             td.textContent = snapshot.val();
         }
@@ -42,12 +47,12 @@ celdas.forEach((td, index) => {
 
     // 3b️⃣ Guardar datos en Firebase cada vez que se edite
     td.addEventListener('input', () => {
-        db.ref('datos/' + td.dataset.id).set(td.textContent);
+        db.ref(mesActual + '/datos/' + index).set(td.textContent);
     });
 });
 
 // 4️⃣ Escuchar cambios en Firebase para actualizar todas las celdas en tiempo real
-db.ref('datos').on('value', snapshot => {
+db.ref(mesActual + '/datos').on('value', snapshot => {
     snapshot.forEach(child => {
         const id = child.key;
         const valor = child.val();
