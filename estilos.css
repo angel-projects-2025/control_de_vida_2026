@@ -901,3 +901,8 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .meta {
+        margin-left: 50px; /* ajusta a tu gusto */
+    }
+}
