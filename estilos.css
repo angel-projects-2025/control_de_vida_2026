@@ -7,7 +7,7 @@
 
 /* ===== CABEZAL ===== */
 .cabezal {
-    background: #6f7a85; /* plomo acero */
+    background: #4a4a4a; /* plomo acero */
     text-align: center;
     padding: 40px 15px 30px;
 }
@@ -247,7 +247,7 @@ body {
 }
 
 .cabezal {
-    background-color: #555; /* gris oscuro */
+    background-color: #4a4a4a; /* gris oscuro */
     text-align: center;
     padding: 40px 20px;
     position: relative;
@@ -309,7 +309,7 @@ body {
 }
 
 .cabezal {
-    background-color: #555; 
+    background-color: #4a4a4a; 
     text-align: center;
     padding: 25px 20px; /* más compacto en PC */
     position: relative;
@@ -724,14 +724,14 @@ body {
 
 @media (max-width: 768px) {
     .edad {
-        font-size: 1rem;     /* 👈 tamaño general más grande */
+        font-size: 1.1rem;     /* 👈 tamaño general más grande */
         margin-top: 14px;
         padding-left: 12px;
         font-weight: 800;
     }
 
     .edad span {
-        font-size: 1.1rem;     /* 👈 el 19/20 bien notorio */
+        font-size: 1.2rem;     /* 👈 el 19/20 bien notorio */
         font-weight: 900;
     }
 }
@@ -803,17 +803,17 @@ body {
 
     /* ENERO más arriba */
     .mes-resaltada {
-        margin-top: 4px !important;
+        margin-top: 7px !important;
     }
 
     /* PESO más arriba */
     .peso {
-        margin-top: 4px !important;
+        margin-top: 7px !important;
     }
 
     /* TABLA más arriba */
     .control-diario {
-        margin-top: 6px !important;
+        margin-top: 8px !important;
     }
 }
 
@@ -822,4 +822,30 @@ body {
     background-color: #000;   /* color */
     width: 55%;               /* 👈 AQUÍ achicas el ancho en PC */
     margin: 10px auto;        /* centrada */
+}
+
+/* META con el MISMO color que ENERO (PC y móvil) */
+.meta {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #FFD700;     /* mismo borde que ENERO */
+    background-color: #fff8c4;     /* mismo fondo que ENERO */
+    color: #333;                   /* mismo texto */
+    font-weight: bold;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .meta {
+        background-color: #FFD700;  /* dorado */
+        border-color: #FFD700;
+        color: #333;
+    }
+}
+
+@media (max-width: 768px) {
+    .franja {
+        width: 95%;   /* 👈 más ancha en móvil */
+    }
 }
