@@ -908,8 +908,8 @@ body {
 }
 
 @media (max-width: 768px) {
-    .meta {
-        position: absolute;
-        right: 15px;
+    .contenedor-meta {
+        display: flex;
+        justify-content: flex-end;
     }
 }
