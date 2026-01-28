@@ -885,7 +885,7 @@ body {
 
 @media (max-width: 768px) {
     .meta {
-        margin-left: 4;    /* 👈 se va a la izquierda */
+        margin-left: 0;    /* 👈 se va a la izquierda */
     }
 }
 
