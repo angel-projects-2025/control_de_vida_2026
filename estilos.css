@@ -868,3 +868,23 @@ body {
 .franja {
     height: 5px;   /* 👈 grosor más delgado (PC y móvil) */
 }
+
+@media (max-width: 768px) {
+    .franja {
+        margin-top: 8px;     /* 👈 más pegada a la tabla */
+        margin-left: auto;  
+        margin-right: auto; 
+    }
+}
+
+@media (max-width: 768px) {
+    .peso {
+        margin-top: 8px;   /* 👈 más arriba (antes estaba más abajo) */
+    }
+}
+
+@media (max-width: 768px) {
+    .meta {
+        margin-left: 0;    /* 👈 se va a la izquierda */
+    }
+}
