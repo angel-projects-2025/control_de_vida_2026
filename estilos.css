@@ -724,14 +724,14 @@ body {
 
 @media (max-width: 768px) {
     .edad {
-        font-size: 1.4rem;     /* 👈 tamaño general más grande */
+        font-size: 1.1rem;     /* 👈 tamaño general más grande */
         margin-top: 14px;
         padding-left: 12px;
         font-weight: 800;
     }
 
     .edad span {
-        font-size: 1.6rem;     /* 👈 el 19/20 bien notorio */
+        font-size: 1.3rem;     /* 👈 el 19/20 bien notorio */
         font-weight: 900;
     }
 }
@@ -764,4 +764,32 @@ body {
     margin-left: -11px; /* 👈 mueve TODO: EDAD + 19/20 */
     font-size: 1.5rem;
     font-weight: 800;
+}
+
+/* ===== CUADROS DE CATEGORÍAS (ENCABEZADOS) ===== */
+.control-diario th {
+    background-color: #4a4a4a; /* plomo oscuro */
+    color: #ffffff;            /* letras blancas */
+    font-weight: 700;
+    border: 2px solid #000;    /* marco negro visible */
+}
+
+/* PC */
+.pc th {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+/* MÓVIL */
+.mobile th {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+/* Ajuste de texto en móvil */
+@media (max-width: 768px) {
+    .control-diario th {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
 }
