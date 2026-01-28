@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// CONFIGURACIÓN DE FIREBASE
+// ====== CONFIGURACIÓN DE FIREBASE ======
+// Reemplaza los valores con los de tu proyecto de Firebase
 const firebaseConfig = {
     apiKey: "TU_API_KEY",
     authDomain: "TU_AUTH_DOMAIN",
@@ -25,20 +26,26 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Selecciona todos los cuadros editables
-const cuadros = document.querySelectorAll("td[contenteditable='true']");
+// ====== FUNCIONES PRINCIPALES ======
+const tablas = document.querySelectorAll('.control-diario table');
 
-// Función para guardar cada cuadro en Firebase
-cuadros.forEach((cuadro, index) => {
-    // Escuchar cambios locales y guardar en Firebase
-    cuadro.addEventListener("input", () => {
-        database.ref("cuadros/" + index).set(cuadro.innerText);
-    });
+// Recorremos cada tabla
+tablas.forEach((tabla, tablaIndex) => {
+    const celdas = tabla.querySelectorAll('td');
 
-    // Escuchar cambios en Firebase y actualizar la celda
-    database.ref("cuadros/" + index).on("value", (snapshot) => {
-        if (snapshot.exists() && cuadro.innerText !== snapshot.val()) {
-            cuadro.innerText = snapshot.val();
-        }
+    celdas.forEach((celda, celdaIndex) => {
+        const ruta = `tabla${tablaIndex}/celda${celdaIndex}`;
+
+        // 1️⃣ Escuchar cambios en Firebase y actualizar la celda
+        database.ref(ruta).on('value', snapshot => {
+            if(snapshot.exists()){
+                celda.textContent = snapshot.val();
+            }
+        });
+
+        // 2️⃣ Escuchar cambios locales y guardar en Firebase
+        celda.addEventListener('input', () => {
+            database.ref(ruta).set(celda.textContent);
+        });
     });
 });
