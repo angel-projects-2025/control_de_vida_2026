@@ -10,46 +10,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// ===== GESTIÓN DE MESES =====
-const btnMeses = document.getElementById('btnMeses');
-const listaMeses = document.getElementById('listaMeses');
+// CONFIGURACIÓN DE FIREBASE
+const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_AUTH_DOMAIN",
+    databaseURL: "TU_DATABASE_URL",
+    projectId: "TU_PROJECT_ID",
+    storageBucket: "TU_STORAGE_BUCKET",
+    messagingSenderId: "TU_MESSAGING_SENDER_ID",
+    appId: "TU_APP_ID"
+};
 
-// Mostrar / ocultar lista
-btnMeses.addEventListener('click', () => {
-    listaMeses.classList.toggle('mostrar');
-});
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
-// Redirigir al hacer clic en un mes
-listaMeses.querySelectorAll('li').forEach(li => {
-    li.addEventListener('click', () => {
-        const mes = li.textContent.toLowerCase();
-        if (mes === 'enero') {
-            window.location.href = 'enero.html';
-        } else if (mes === 'febrero') {
-            window.location.href = 'febrero.html';
-        } else if (mes === 'marzo') {
-            window.location.href = 'marzo.html';
+// Selecciona todos los cuadros editables
+const cuadros = document.querySelectorAll("td[contenteditable='true']");
+
+// Función para guardar cada cuadro en Firebase
+cuadros.forEach((cuadro, index) => {
+    // Escuchar cambios locales y guardar en Firebase
+    cuadro.addEventListener("input", () => {
+        database.ref("cuadros/" + index).set(cuadro.innerText);
+    });
+
+    // Escuchar cambios en Firebase y actualizar la celda
+    database.ref("cuadros/" + index).on("value", (snapshot) => {
+        if (snapshot.exists() && cuadro.innerText !== snapshot.val()) {
+            cuadro.innerText = snapshot.val();
         }
     });
 });
-
-// ===== GUARDADO DE CUADROS EDITABLES =====
-const celdas = document.querySelectorAll('td[contenteditable="true"]');
-
-// Cargar datos guardados
-window.addEventListener('load', () => {
-    celdas.forEach((celda, index) => {
-        const valor = localStorage.getItem('celda_' + index);
-        if (valor) celda.textContent = valor;
-    });
-});
-
-// Guardar automáticamente al escribir
-celdas.forEach((celda, index) => {
-    celda.addEventListener('input', () => {
-        localStorage.setItem('celda_' + index, celda.textContent);
-    });
-});
-
-// ===== OPCIONAL: Limpiar localStorage (para pruebas) =====
-// localStorage.clear();
