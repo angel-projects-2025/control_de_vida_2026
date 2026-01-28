@@ -721,3 +721,47 @@ body {
         height: 6px;           /* menos grosor */
     }
 }
+
+@media (max-width: 768px) {
+    .edad {
+        font-size: 1.4rem;     /* 👈 tamaño general más grande */
+        margin-top: 14px;
+        padding-left: 12px;
+        font-weight: 800;
+    }
+
+    .edad span {
+        font-size: 1.6rem;     /* 👈 el 19/20 bien notorio */
+        font-weight: 900;
+    }
+}
+
+/* ===== DESPLAZAR CONTENIDO COMPLETO A LA DERECHA (PC) ===== */
+@media (min-width: 769px) {
+    .edad,
+    .mes-resaltada,
+    .peso,
+    .control-diario {
+        margin-left: 500px;   /* 👈 CAMBIA este valor a tu gusto */
+    }
+}
+
+/* ===== MOVER PESO A LA IZQUIERDA SOLO EN PC ===== */
+@media (min-width: 769px) {
+    .peso {
+        margin-left: -10px;   /* 👈 REDUCE este valor para moverlo más a la izquierda */
+    }
+}
+
+/* Mover SOLO la META a la izquierda */
+.meta {
+    display: inline-block;
+    margin-left: 560px; /* 👈 ajusta este valor */
+}
+
+.edad-texto {
+    display: inline-block;
+    margin-left: -11px; /* 👈 mueve TODO: EDAD + 19/20 */
+    font-size: 1.5rem;
+    font-weight: 800;
+}
