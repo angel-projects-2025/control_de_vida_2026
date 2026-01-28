@@ -913,3 +913,15 @@ body {
         justify-content: flex-end;
     }
 }
+
+#listaMeses li a {
+    text-decoration: none;  /* quita subrayado */
+    color: #000;            /* color del texto */
+    display: block;          /* ocupa todo el cuadro del li */
+    padding: 8px 10px;
+}
+
+#listaMeses li a:hover {
+    background: #eaeaea;
+    color: #000;             /* opcional, mantén el color negro */
+}
