@@ -909,6 +909,7 @@ body {
 
 @media (max-width: 768px) {
     .meta {
-        margin-left: 20px; /* súbelo todo lo que quieras */
+        position: absolute;
+        right: 15px;
     }
 }
