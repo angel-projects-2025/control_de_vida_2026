@@ -948,3 +948,31 @@ td[contenteditable="true"]:focus {
         text-align: center;        /* Centrar texto */
     }
 }
+
+.peso {
+    color: white;
+}
+
+.franja {
+    background-color: #B0B0B0; /* Plomo claro */
+}
+
+/* Edad visible en blanco */
+.edad-texto {
+    color: white; /* Letras blancas */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .edad-texto {
+        font-size: 18px; /* Más grande en móvil */
+    }
+}
+
+/* Fondo de toda la página en negro */
+body {
+    background-color: black;
+    color: white; /* Si quieres que el texto general se vea blanco */
+}
