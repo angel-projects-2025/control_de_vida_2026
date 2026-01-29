@@ -926,3 +926,25 @@ body {
     color: #000;             /* opcional, mantén el color negro */
 }
 
+/* Celdas editables - estilo general */
+td[contenteditable="true"] {
+    background-color: black;   /* Fondo negro */
+    color: white;              /* Letras blancas */
+    border: 1px solid #333;    /* Borde gris oscuro/plomo */
+    text-align: center;        /* Centrar texto */
+}
+
+/* Resaltar celda al enfocarla */
+td[contenteditable="true"]:focus {
+    outline: 2px solid #fff;   /* Resalta la celda seleccionada */
+}
+
+/* Ajuste para móviles - sin cambiar tamaño ni padding */
+@media (max-width: 768px) {
+    td[contenteditable="true"] {
+        background-color: black;  /* Fondo negro en móvil */
+        color: white;             /* Letras blancas en móvil */
+        border: 1px solid #333;   /* Borde gris oscuro en móvil */
+        text-align: center;        /* Centrar texto */
+    }
+}
