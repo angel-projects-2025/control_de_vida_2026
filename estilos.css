@@ -930,11 +930,8 @@ body {
 td[contenteditable="true"] {
     background-color: black;   /* Fondo negro */
     color: white;              /* Letras blancas */
-    padding: 5px;              /* Espacio dentro de la celda */
-    border: 1px solid #333;    /* Borde gris oscuro opcional */
+    border: 1px solid #333;    /* Borde gris oscuro/plomo */
     text-align: center;        /* Centrar texto */
-    min-width: 40px;           /* Ancho mínimo */
-    font-size: 14px;           /* Tamaño de letra por defecto */
 }
 
 /* Resaltar celda al enfocarla */
@@ -951,4 +948,3 @@ td[contenteditable="true"]:focus {
         text-align: center;        /* Centrar texto */
     }
 }
-
