@@ -942,67 +942,13 @@ td[contenteditable="true"]:focus {
     outline: 2px solid #fff;   /* Resalta la celda seleccionada */
 }
 
-/* Ajuste para móviles */
+/* Ajuste para móviles - sin cambiar tamaño ni padding */
 @media (max-width: 768px) {
     td[contenteditable="true"] {
-        padding: 8px;          /* Más espacio táctil */
-        font-size: 16px;       /* Letras un poco más grandes */
-        min-width: 50px;       /* Celdas un poco más anchas */
+        background-color: black;  /* Fondo negro en móvil */
+        color: white;             /* Letras blancas en móvil */
+        border: 1px solid #333;   /* Borde gris oscuro en móvil */
+        text-align: center;        /* Centrar texto */
     }
 }
 
-/* Fondo de toda la página */
-body {
-    background-color: black; /* Pantalla negra */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: white; /* Texto general en blanco */
-}
-
-/* Celdas editables */
-td[contenteditable="true"] {
-    background-color: black;   /* Fondo negro */
-    color: white;              /* Letras blancas */
-    padding: 5px;
-    border: 1px solid #555;    /* Borde gris oscuro para ver el cuadro */
-    text-align: center;
-    min-width: 40px;
-    font-size: 14px;
-}
-
-/* Resaltar celda al enfocarla */
-td[contenteditable="true"]:focus {
-    outline: 2px solid white;
-}
-
-/* Ajustes para móviles */
-@media (max-width: 768px) {
-    td[contenteditable="true"] {
-        padding: 8px;
-        font-size: 16px;
-        min-width: 50px;
-    }
-}
-
-/* Edad visible en blanco */
-.edad-texto {
-    color: white; /* Letras blancas */
-    font-weight: bold;
-    font-size: 16px;
-}
-
-/* Ajuste para móviles */
-@media (max-width: 768px) {
-    .edad-texto {
-        font-size: 18px; /* Más grande en móvil */
-    }
-}
-
-.franja {
-    background-color: #B0B0B0; /* Plomo claro */
-}
-
-.peso {
-    color: white;
-}
