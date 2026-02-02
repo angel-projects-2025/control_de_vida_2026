@@ -1073,150 +1073,15 @@ body {
 @media (max-width: 768px) {
     .control-vida h1 {
         position: relative;
-        left: -35px;   /* ajusta a tu gusto */
+        left: -45px;   /* ajusta a tu gusto */
         text-align: center;
     }
 }
 
-/* =========================
-   SECCIÓN PARTIDOS DEL SC
-========================= */
-
-.partidos-sc {
-    padding: 20px;
-    color: #fff;
-}
-
-/* TÍTULOS */
-.titulo-partidos {
-    text-align: center;
-    font-size: 1.6rem;
-    margin-bottom: 5px;
-}
-
-.subtitulo-partidos {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 18px;
-    opacity: 0.85;
-}
-
-/* =========================
-   TABLA
-========================= */
-
-.tabla-partidos {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-    background: rgba(255,255,255,0.08);
-    border-radius: 14px;
-    overflow: hidden;
-}
-
-/* FILAS */
-.fila {
-    display: grid;
-    grid-template-columns:
-        55px   /* DÍA */
-        65px   /* HORA */
-        120px  /* LOCAL */
-        45px   /* MAR */
-        35px   /* VS */
-        45px   /* MAR */
-        120px  /* VIS */
-        100px; /* RESULTADO */
-    align-items: center;
-    text-align: center;
-    padding: 10px 6px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-    font-size: 0.9rem;
-}
-
-/* ENCABEZADO */
-.fila.encabezado {
-    background: rgba(0,0,0,0.45);
-    font-weight: bold;
-    font-size: 0.85rem;
-}
-
-/* EQUIPOS */
-.equipo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
-
-.equipo img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-}
-
-/* MARCADOR */
-.marcador {
-    min-height: 26px;
-    background: #ffffff;
-    color: #000;
-    border-radius: 6px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* VS */
-.vs {
-    font-weight: bold;
-}
-
-/* RESULTADO */
-.resultado {
-    min-height: 26px;
-    border-radius: 6px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* =========================
-   RESPONSIVE MÓVIL
-========================= */
-
+/* BOTÓN FÚTBOL - MÓVIL (MOVER A LA IZQUIERDA) */
 @media (max-width: 768px) {
-
-    .titulo-partidos {
-        font-size: 1.3rem;
-    }
-
-    .subtitulo-partidos {
-        font-size: 1rem;
-    }
-
-    .fila {
-        grid-template-columns:
-            35px  /* D */
-            45px  /* H */
-            80px  /* LOC */
-            35px  /* MAR */
-            25px  /* VS */
-            35px  /* MAR */
-            80px  /* VIS */
-            65px; /* RES */
-        font-size: 0.75rem;
-        padding: 8px 4px;
-    }
-
-    .equipo img {
-        width: 22px;
-        height: 22px;
-    }
-
-    .marcador,
-    .resultado {
-        min-height: 22px;
-        font-size: 0.75rem;
+    .futbol-menu {
+        position: relative;
+        left: -30px; 
     }
 }
