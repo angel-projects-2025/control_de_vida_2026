@@ -1068,3 +1068,12 @@ body {
         left: -80px; /* mueve el botón a la izquierda */
     }
 }
+
+/* SOLO MÓVIL */
+@media (max-width: 768px) {
+    .control-vida h1 {
+        position: relative;
+        left: -25px;   /* ajusta a tu gusto */
+        text-align: center;
+    }
+}
