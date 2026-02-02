@@ -976,3 +976,69 @@ body {
     background-color: black;
     color: white; /* Si quieres que el texto general se vea blanco */
 }
+
+/* CONTENEDOR */
+.futbol-menu {
+    position: relative;
+}
+
+/* BOTÓN */
+#btnFutbol {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px; /* más redondo */
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* HOVER SIN ZOOM */
+#btnFutbol:hover {
+    background: linear-gradient(135deg, #2a5298, #1e3c72);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* CLICK */
+#btnFutbol:active {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* MENÚ DESPLEGABLE */
+#listaFutbol {
+    list-style: none;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    min-width: 160px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    overflow: hidden;
+    display: none;
+    z-index: 100;
+}
+
+/* OPCIONES */
+#listaFutbol li a {
+    display: block;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+#listaFutbol li a:hover {
+    background: #2a5298;
+    color: #fff;
+}
+
+/* MOSTRAR MENÚ SOLO CON CLICK */
+.futbol-menu.active #listaFutbol {
+    display: block;
+}

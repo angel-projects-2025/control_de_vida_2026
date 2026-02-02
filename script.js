@@ -62,3 +62,18 @@ db.ref(mesActual + '/datos').on('value', snapshot => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnFutbol = document.getElementById("btnFutbol");
+    const menuFutbol = document.querySelector(".futbol-menu");
+
+    btnFutbol.addEventListener("click", (e) => {
+        e.stopPropagation(); // evita cierre inmediato
+        menuFutbol.classList.toggle("active");
+    });
+
+    // Cerrar al hacer click fuera
+    document.addEventListener("click", () => {
+        menuFutbol.classList.remove("active");
+    });
+});
