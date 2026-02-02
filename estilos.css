@@ -1042,3 +1042,29 @@ body {
 .futbol-menu.active #listaFutbol {
     display: block;
 }
+
+/* BOTÓN FÚTBOL - MÓVIL */
+@media (max-width: 768px) {
+    #btnFutbol {
+        padding: 7px 14px;   /* un poco más chico */
+        font-size: 0.85rem;  /* texto más compacto */
+        border-radius: 22px; /* mantiene lo redondo */
+    }
+}
+
+/* SOLO PC */
+@media (min-width: 769px) {
+    .control-vida h1 {
+        position: relative;
+        left: -80px;   /* mueve solo el texto */
+        text-align: center;
+    }
+}
+
+/* SOLO PC */
+@media (min-width: 769px) {
+    .futbol-menu {
+        position: relative;
+        left: -80px; /* mueve el botón a la izquierda */
+    }
+}
