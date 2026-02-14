@@ -1165,7 +1165,15 @@ td.equipo {
 }
 @media (max-width: 768px) {
     .subtitulo-seccion {
-        margin-left: 30px;   /* 👈 mueve un poco a la izquierda */
+        margin-left: 50px;   /* 👈 mueve un poco a la izquierda */
         font-size: 18px;
     }
+}
+
+.liga1 {
+    color: red;
+}
+
+.libertadores {
+    color: #b8860b; /* dorado tipo Libertadores */
 }
