@@ -1157,3 +1157,15 @@ td.equipo {
         font-size: 24px;
     }
 }
+@media (min-width: 769px) {
+    .subtitulo-seccion {
+        margin-left: 500px; /* 👈 ajusta este valor */
+        font-size: 22px;
+    }
+}
+@media (max-width: 768px) {
+    .subtitulo-seccion {
+        margin-left: 10px;   /* 👈 mueve un poco a la izquierda */
+        font-size: 18px;
+    }
+}
