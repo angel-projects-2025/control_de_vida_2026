@@ -1086,3 +1086,39 @@ body {
     }
 }
 
+.equipo {
+    cursor: pointer;
+    text-align: center;
+}
+
+.img-equipo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.equipo {
+    text-align: center;
+    padding: 0;
+}
+
+.img-equipo {
+    width: 50%;
+    max-width: 45px;   /* tamaño máximo en PC */
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+@media (max-width: 768px) {
+    .img-equipo {
+        max-width: 60px;
+    }
+}
+
+td.equipo {
+    background-color: black !important;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(54, 53, 53);   /* 👈 contorno visible */
+}

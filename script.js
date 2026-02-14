@@ -30,7 +30,7 @@ const db = firebase.database();
 const celdas = document.querySelectorAll('td[contenteditable="true"]');
 
 // Detecta el mes según lo que dice tu HTML
-const mesActual = document.querySelector('.mes-resaltada').textContent.trim();
+const mesActual = window.location.pathname.split("/").pop().replace(".html", "");
 console.log("Mes actual:", mesActual); // Solo para probar
 
 
@@ -75,5 +75,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cerrar al hacer click fuera
     document.addEventListener("click", () => {
         menuFutbol.classList.remove("active");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const equipos = document.querySelectorAll(".equipo");
+
+    equipos.forEach(celda => {
+        const input = celda.querySelector(".input-img");
+        const img = celda.querySelector(".img-equipo");
+
+        // Al hacer clic en la celda, abrir selector
+        celda.addEventListener("click", () => {
+            input.click();
+        });
+
+        // Cuando se seleccione imagen
+        input.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     });
 });
