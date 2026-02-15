@@ -1177,3 +1177,19 @@ td.equipo {
 .libertadores {
     color: #b8860b; /* dorado tipo Libertadores */
 }
+
+/* SOLO PC */
+@media (min-width: 769px) {
+    .liga1,
+    .libertadores {
+        margin-left: 500px;  /* 👈 mueve a la derecha */
+    }
+}
+
+/* SOLO MOVIL */
+@media (max-width: 768px) {
+    .liga1,
+    .libertadores {
+        margin-left: 15px;  /* 👈 mueve un poco a la derecha */
+    }
+}
