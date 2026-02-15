@@ -1190,6 +1190,12 @@ td.equipo {
 @media (max-width: 768px) {
     .liga1,
     .libertadores {
-        margin-left: 15px;  /* 👈 mueve un poco a la derecha */
+        margin-left: 20px;  /* 👈 mueve un poco a la derecha */
+    }
+}
+
+@media (max-width: 768px) {
+    .subtitulo-seccion {
+        margin-left: -10px;  /* más a la izquierda */
     }
 }
