@@ -1196,6 +1196,6 @@ td.equipo {
 
 @media (max-width: 768px) {
     .subtitulo-seccion {
-        margin-left: 30px;  /* más a la izquierda */
+        margin-left: 26px;  /* más a la izquierda */
     }
 }
