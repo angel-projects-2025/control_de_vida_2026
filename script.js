@@ -1,20 +1,16 @@
 /***********************
  *  MENÚ MESES
  ***********************/
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const btnMeses = document.getElementById("btnMeses");
   const listaMeses = document.getElementById("listaMeses");
 
-  console.log("JS cargado");
-
   if (btnMeses && listaMeses) {
-    btnMeses.addEventListener("click", function (e) {
+    btnMeses.addEventListener("click", (e) => {
       e.stopPropagation();
-      console.log("Click en Meses");
       listaMeses.classList.toggle("mostrar");
     });
 
-    // Cerrar al hacer click fuera
     document.addEventListener("click", () => {
       listaMeses.classList.remove("mostrar");
     });
@@ -35,10 +31,7 @@ const firebaseConfig = {
   measurementId: "G-TREFLRKN62",
 };
 
-// Evitar doble inicialización
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 /***********************
@@ -50,78 +43,79 @@ function getNombreArchivoSinExt() {
 }
 
 function detectarMesSeguro() {
-  // 1) prioridad: data-mes
   const m = (document.body.dataset.mes || "").trim().toLowerCase();
   if (m) return m;
-
-  // 2) fallback: nombre del archivo
   const archivo = getNombreArchivoSinExt();
   return archivo || "sin_mes";
 }
 
 function detectarSeccionSegura() {
-  // prioridad data-seccion; fallback "partidos"
   const s = (document.body.dataset.seccion || "").trim().toLowerCase();
   return s || "partidos";
 }
 
 /***********************
- *  GUARDADO SEPARADO
- *  mes(or archivo)/seccion/datos/celda
+ *  GUARDADO + TIEMPO REAL (PC <-> MÓVIL)
  ***********************/
 document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Ahora index SÍ guarda (ya no hay return para index)
-  // Si alguna página realmente no debe guardar, ahí sí usa:
-  // <body data-no-guardar="true">
-  if (document.body.dataset.noGuardar === "true") {
-    console.log("Página marcada como NO GUARDAR (data-no-guardar='true').");
-    return;
-  }
+  if (document.body.dataset.noGuardar === "true") return;
 
   const mes = detectarMesSeguro();          // enero/febrero/abril/mayo/index...
   const seccion = detectarSeccionSegura();  // partidos/estadio...
-
-  // ✅ Ruta ÚNICA por HTML/mes y por sección
   const basePath = `${mes}/${seccion}/datos`;
+
   console.log("✅ Ruta Firebase:", basePath);
 
-  // ✅ Solo celdas editables de ESTA página
   const celdas = document.querySelectorAll('td[contenteditable="true"]');
-  if (!celdas.length) {
-    console.log("No hay td contenteditable en esta página.");
-    return;
-  }
+  if (!celdas.length) return;
 
-  // Carga inicial + guardar en input
+  // Evita spamear firebase en cada tecla (más suave)
+  const timers = new Map();
+  const guardarCelda = (td, index) => {
+    const key = `${index}`;
+    if (timers.has(key)) clearTimeout(timers.get(key));
+
+    timers.set(
+      key,
+      setTimeout(() => {
+        db.ref(`${basePath}/${index}`).set(td.textContent).catch(console.error);
+      }, 120)
+    );
+  };
+
+  // 1) Carga inicial
   celdas.forEach((td, index) => {
     td.dataset.id = index;
 
     db.ref(`${basePath}/${index}`)
       .once("value")
-      .then((snapshot) => {
-        if (snapshot.exists()) td.textContent = snapshot.val();
+      .then((snap) => {
+        if (snap.exists()) td.textContent = snap.val();
       })
-      .catch((err) => console.error("Error al cargar:", err));
+      .catch(console.error);
 
-    td.addEventListener("input", () => {
-      db.ref(`${basePath}/${index}`)
-        .set(td.textContent)
-        .catch((err) => console.error("Error al guardar:", err));
-    });
+    // 2) Guardado: PC y móvil (input a veces falla en móvil -> keyup/blur)
+    td.addEventListener("input", () => guardarCelda(td, index));
+    td.addEventListener("keyup", () => guardarCelda(td, index)); // 👈 móvil
+    td.addEventListener("blur", () => guardarCelda(td, index));  // 👈 móvil
   });
 
-  // Tiempo real (si editas en otra pestaña/dispositivo)
-  db.ref(basePath).on("value", (snapshot) => {
-    snapshot.forEach((child) => {
-      const id = child.key;
-      const valor = child.val();
+  // 3) Tiempo real: escuchar cambios uno por uno (mejor que 'value')
+  const aplicarCambio = (snap) => {
+    const id = snap.key;
+    const valor = snap.val();
 
-      const td = document.querySelector(`td[data-id='${id}']`);
-      if (td && td.textContent !== valor) {
-        td.textContent = valor;
-      }
-    });
-  });
+    const td = document.querySelector(`td[data-id='${id}']`);
+    if (!td) return;
+
+    // Si justo estás escribiendo en ESA celda, no la sobreescribas
+    if (document.activeElement === td) return;
+
+    if (td.textContent !== valor) td.textContent = valor;
+  };
+
+  db.ref(basePath).on("child_added", aplicarCambio);
+  db.ref(basePath).on("child_changed", aplicarCambio);
 });
 
 /***********************
@@ -137,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
       menuFutbol.classList.toggle("active");
     });
 
-    // Cerrar al hacer click fuera
     document.addEventListener("click", () => {
       menuFutbol.classList.remove("active");
     });
@@ -145,30 +138,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /***********************
- *  IMÁGENES DE EQUIPOS
- *  (solo visual por ahora)
+ *  IMÁGENES DE EQUIPOS (solo visual por ahora)
  ***********************/
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const equipos = document.querySelectorAll(".equipo");
 
   equipos.forEach((celda) => {
     const input = celda.querySelector(".input-img");
     const img = celda.querySelector(".img-equipo");
-
     if (!input || !img) return;
 
-    celda.addEventListener("click", () => {
-      input.click();
-    });
+    celda.addEventListener("click", () => input.click());
 
     input.addEventListener("change", function () {
       const file = this.files && this.files[0];
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function (e) {
-        img.src = e.target.result;
-      };
+      reader.onload = (e) => (img.src = e.target.result);
       reader.readAsDataURL(file);
     });
   });
