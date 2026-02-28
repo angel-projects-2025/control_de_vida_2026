@@ -1199,3 +1199,10 @@ td.equipo {
         margin-left: 26px;  /* más a la izquierda */
     }
 }
+
+@media (min-width: 769px) {
+    .control-diario th,
+    .control-diario td {
+        padding: 2px 6px;
+    }
+}

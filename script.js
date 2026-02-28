@@ -1,16 +1,29 @@
+/***********************
+ *  MENÚ MESES
+ ***********************/
 document.addEventListener("DOMContentLoaded", function () {
-    const btnMeses = document.getElementById("btnMeses");
-    const listaMeses = document.getElementById("listaMeses");
+  const btnMeses = document.getElementById("btnMeses");
+  const listaMeses = document.getElementById("listaMeses");
 
-    console.log("JS cargado"); // 👈 prueba
+  console.log("JS cargado");
 
-    btnMeses.addEventListener("click", function () {
-        console.log("Click en Meses"); // 👈 prueba
-        listaMeses.classList.toggle("mostrar");
+  if (btnMeses && listaMeses) {
+    btnMeses.addEventListener("click", function (e) {
+      e.stopPropagation();
+      console.log("Click en Meses");
+      listaMeses.classList.toggle("mostrar");
     });
+
+    // Cerrar al hacer click fuera
+    document.addEventListener("click", () => {
+      listaMeses.classList.remove("mostrar");
+    });
+  }
 });
 
-// 1️⃣ Configuración de Firebase
+/***********************
+ *  FIREBASE CONFIG
+ ***********************/
 const firebaseConfig = {
   apiKey: "AIzaSyAd3UszZPrcm5UPQs0uKLlOKIUfw6iZ0Jw",
   authDomain: "control2026.firebaseapp.com",
@@ -19,87 +32,144 @@ const firebaseConfig = {
   storageBucket: "control2026.appspot.com",
   messagingSenderId: "236169340239",
   appId: "1:236169340239:web:cfaaa09292965b872fd13a",
-  measurementId: "G-TREFLRKN62"
+  measurementId: "G-TREFLRKN62",
 };
 
-// Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
+// Evitar doble inicialización
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 const db = firebase.database();
 
-// 2️⃣ Selecciona todos los td editables
-const celdas = document.querySelectorAll('td[contenteditable="true"]');
+/***********************
+ *  HELPERS (mes/sección)
+ ***********************/
+function getNombreArchivoSinExt() {
+  const file = window.location.pathname.split("/").pop() || "";
+  return file.toLowerCase().replace(".html", "").trim();
+}
 
-// Detecta el mes según lo que dice tu HTML
-const mesActual = window.location.pathname.split("/").pop().replace(".html", "");
-console.log("Mes actual:", mesActual); // Solo para probar
+function detectarMesSeguro() {
+  // 1) prioridad: data-mes
+  const m = (document.body.dataset.mes || "").trim().toLowerCase();
+  if (m) return m;
 
+  // 2) fallback: nombre del archivo
+  const archivo = getNombreArchivoSinExt();
+  return archivo || "sin_mes";
+}
 
-// 3️⃣ Genera una clave única para cada celda según su posición
-celdas.forEach((td, index) => {
+function detectarSeccionSegura() {
+  // prioridad data-seccion; fallback "partidos"
+  const s = (document.body.dataset.seccion || "").trim().toLowerCase();
+  return s || "partidos";
+}
+
+/***********************
+ *  GUARDADO SEPARADO
+ *  mes(or archivo)/seccion/datos/celda
+ ***********************/
+document.addEventListener("DOMContentLoaded", () => {
+  // ✅ Ahora index SÍ guarda (ya no hay return para index)
+  // Si alguna página realmente no debe guardar, ahí sí usa:
+  // <body data-no-guardar="true">
+  if (document.body.dataset.noGuardar === "true") {
+    console.log("Página marcada como NO GUARDAR (data-no-guardar='true').");
+    return;
+  }
+
+  const mes = detectarMesSeguro();          // enero/febrero/abril/mayo/index...
+  const seccion = detectarSeccionSegura();  // partidos/estadio...
+
+  // ✅ Ruta ÚNICA por HTML/mes y por sección
+  const basePath = `${mes}/${seccion}/datos`;
+  console.log("✅ Ruta Firebase:", basePath);
+
+  // ✅ Solo celdas editables de ESTA página
+  const celdas = document.querySelectorAll('td[contenteditable="true"]');
+  if (!celdas.length) {
+    console.log("No hay td contenteditable en esta página.");
+    return;
+  }
+
+  // Carga inicial + guardar en input
+  celdas.forEach((td, index) => {
     td.dataset.id = index;
 
-    // 3a️⃣ Cargar datos existentes de Firebase al iniciar
-    db.ref(mesActual + '/datos/' + index).once('value').then(snapshot => {
-        if(snapshot.exists()){
-            td.textContent = snapshot.val();
-        }
-    });
+    db.ref(`${basePath}/${index}`)
+      .once("value")
+      .then((snapshot) => {
+        if (snapshot.exists()) td.textContent = snapshot.val();
+      })
+      .catch((err) => console.error("Error al cargar:", err));
 
-    // 3b️⃣ Guardar datos en Firebase cada vez que se edite
-    td.addEventListener('input', () => {
-        db.ref(mesActual + '/datos/' + index).set(td.textContent);
+    td.addEventListener("input", () => {
+      db.ref(`${basePath}/${index}`)
+        .set(td.textContent)
+        .catch((err) => console.error("Error al guardar:", err));
     });
+  });
+
+  // Tiempo real (si editas en otra pestaña/dispositivo)
+  db.ref(basePath).on("value", (snapshot) => {
+    snapshot.forEach((child) => {
+      const id = child.key;
+      const valor = child.val();
+
+      const td = document.querySelector(`td[data-id='${id}']`);
+      if (td && td.textContent !== valor) {
+        td.textContent = valor;
+      }
+    });
+  });
 });
 
-// 4️⃣ Escuchar cambios en Firebase para actualizar todas las celdas en tiempo real
-db.ref(mesActual + '/datos').on('value', snapshot => {
-    snapshot.forEach(child => {
-        const id = child.key;
-        const valor = child.val();
-        const td = document.querySelector(`td[data-id='${id}']`);
-        if(td && td.textContent !== valor){
-            td.textContent = valor;
-        }
-    });
-});
-
+/***********************
+ *  MENÚ FÚTBOL
+ ***********************/
 document.addEventListener("DOMContentLoaded", () => {
-    const btnFutbol = document.getElementById("btnFutbol");
-    const menuFutbol = document.querySelector(".futbol-menu");
+  const btnFutbol = document.getElementById("btnFutbol");
+  const menuFutbol = document.querySelector(".futbol-menu");
 
+  if (btnFutbol && menuFutbol) {
     btnFutbol.addEventListener("click", (e) => {
-        e.stopPropagation(); // evita cierre inmediato
-        menuFutbol.classList.toggle("active");
+      e.stopPropagation();
+      menuFutbol.classList.toggle("active");
     });
 
     // Cerrar al hacer click fuera
     document.addEventListener("click", () => {
-        menuFutbol.classList.remove("active");
+      menuFutbol.classList.remove("active");
     });
+  }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const equipos = document.querySelectorAll(".equipo");
+/***********************
+ *  IMÁGENES DE EQUIPOS
+ *  (solo visual por ahora)
+ ***********************/
+document.addEventListener("DOMContentLoaded", function () {
+  const equipos = document.querySelectorAll(".equipo");
 
-    equipos.forEach(celda => {
-        const input = celda.querySelector(".input-img");
-        const img = celda.querySelector(".img-equipo");
+  equipos.forEach((celda) => {
+    const input = celda.querySelector(".input-img");
+    const img = celda.querySelector(".img-equipo");
 
-        // Al hacer clic en la celda, abrir selector
-        celda.addEventListener("click", () => {
-            input.click();
-        });
+    if (!input || !img) return;
 
-        // Cuando se seleccione imagen
-        input.addEventListener("change", function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+    celda.addEventListener("click", () => {
+      input.click();
     });
+
+    input.addEventListener("change", function () {
+      const file = this.files && this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 });
